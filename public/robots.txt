@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://astroship.web3templates.com/sitemap-index.xml
+Sitemap: http://stellular-licorice-c2bfcd.netlify.app/sitemap-index.xml
