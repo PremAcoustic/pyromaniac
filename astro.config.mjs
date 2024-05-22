@@ -6,9 +6,6 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://astroship-pro.web3templates.com",
-  image: {
-    domains: ["source.unsplash.com", "images.unsplash.com"],
-  },
+  site: "https://stellular-licorice-c2bfcd.netlify.app/",
   integrations: [tailwind(), mdx(), icon(), sitemap()],
 });
