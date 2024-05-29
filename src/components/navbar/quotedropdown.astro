@@ -2,7 +2,7 @@
 import { Dropdown as NavDropdown, DropdownItems } from "astro-navbar";
 import Link from "@components/ui/button.astro"
 import { Icon } from "astro-icon/components";
-import QuoteDropdown from "@components/navbar/quotedropdownlist.svelte";
+import QuoteDropdownList from "@components/navbar/quotedropdownlist.svelte";
 import QuoteQuantity  from "@components/navbar/quotequantity.svelte";
 ---
 
@@ -17,6 +17,6 @@ import QuoteQuantity  from "@components/navbar/quotequantity.svelte";
     <QuoteQuantity client:load />
   </Link>
   <DropdownItems>
-<QuoteDropdown client:load />
+<QuoteDropdownList client:load />
   </DropdownItems>
 </NavDropdown>
