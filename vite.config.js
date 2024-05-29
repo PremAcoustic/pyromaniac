@@ -1,9 +1,8 @@
 import { defineConfig } from 'vite';
-import astro from '@astrojs/vite-plugin-astro';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-  plugins: [astro(), tsconfigPaths()],
+  plugins: [tsconfigPaths()],
   resolve: {
     alias: {
       '@lib': '/src/lib',
