@@ -1,0 +1,64 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import { SEO } from "astro-seo";
+import Footer from "@components/footer.astro";
+import Navbar from "@components/navbar/navbar.astro";
+import "@fontsource-variable/inter/index.css";
+
+const { title, footerMargin = true } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+
+const resolvedImageWithDomain = new URL(
+  "/opengraph.jpg",
+  Astro.site,
+).toString();
+
+const makeTitle = title
+  ? title + " | " + "Premier Acoustic"
+  : "Premier Acoustic - Your Source for High-Quality Audio Systems";
+
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#4f46e5">
+
+    <SEO
+      title={makeTitle}
+      description="Premier Acoustic - Your Source for High-Quality Audio Systems"
+      canonical={canonicalURL}
+      twitter={{
+        creator: "@PremierAcoustic",
+        site: "@premieracoustic",
+        card: "summary_large_image",
+      }}
+      openGraph={{
+        basic: {
+          url: canonicalURL,
+          type: "website",
+          title: `Premier Acoustic - Your Source for High-Quality Audio Systems`,
+          image: resolvedImageWithDomain,
+        },
+        image: {
+          alt: "Premier Acoustic Homepage Screenshot",
+        },
+      }}
+    />
+    <style is:global>
+      img {
+        content-visibility: auto;
+      }
+    </style>
+    <ViewTransitions />
+  </head>
+  <body>
+    <Navbar />
+    <slot />
+    <Footer margin={footerMargin} />
+  </body>
+</html>
