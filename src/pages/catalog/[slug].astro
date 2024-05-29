@@ -1,0 +1,65 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import { Picture } from "astro:assets";
+import Quotebutton from "@components/quotebutton.svelte"
+
+
+export async function getStaticPaths() {
+  const catalogEntries = await getCollection("catalog");
+  return catalogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+// Get the entry directly from the prop on render
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+<Layout title={entry.data.model}>
+  <Container>
+    <div class="mx-auto max-w-3xl text-center mt-14">
+      <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
+        {entry.data.category}
+      </span>
+      <h1
+        class="text-3xl lg:text-4xl font-bold lg:tracking-tight mt-1 lg:leading-tight">
+        {entry.data.model}
+      </h1>
+      <div
+        class="flex gap-2 mt-3 items-center justify-center text-sm flex-wrap md:flex-nowrap">
+        <span class="text-slate-400">
+          {entry.data.manufacturer}
+        </span>
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-4xl">
+      <Picture
+        formats={["avif", "webp"]}
+        src={entry.data.image.src}
+        alt="Feature image"
+        width="1280"
+        height="800"
+        class="h-full w-full object-contain rounded-xl mt-6"
+        transition:name={`post-img-${entry.slug}`}
+      />
+    </div>
+    <div class="mx-auto max-w-3xl mt-6">
+      <Quotebutton sku={entry.data.sku} model={entry.data.model} client:load />
+     </div>
+    <div
+      class="mx-auto prose mt-6 max-w-3xl prose-headings:mb-2 prose-headings:mt-8">
+      <Content />
+    </div>
+    <div class="text-center mt-12">
+      <a
+        href="/blog"
+        class="bg-gray-100 px-5 py-3 rounded-md hover:bg-gray-200 transition"
+        >← Back to Catalog</a
+      >
+    </div>
+  </Container>
+</Layout>
