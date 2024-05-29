@@ -2,6 +2,9 @@
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "strictNullChecks": true,
+    "types": ["solid-js"],
+    "allowJs": true,
+    "useUnknownInCatchVariables": false,
     "baseUrl": "src",
     "paths": {
       "@lib/*": ["lib/*"],
@@ -9,7 +12,10 @@
       "@components/*": ["components/*"],
       "@layouts/*": ["layouts/*"],
       "@assets/*": ["assets/*"],
+      "@stores/*": ["stores/*"],
       "@pages/*": ["pages/*"]
+      
     }
+    
   }
 }
